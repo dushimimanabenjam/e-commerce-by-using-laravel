@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\CategoryFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class category extends Model
+{
+    /** @use HasFactory<CategoryFactory> */
+    use HasFactory;
+
+    protected $fillable = ['name', 'slug', 'description'];
+
+    public function products()
+    {
+        return $this->hasMany(product::class);
+    }
+}
