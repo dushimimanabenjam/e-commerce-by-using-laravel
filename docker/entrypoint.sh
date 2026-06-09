@@ -43,5 +43,9 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
+# Substitute PORT in nginx config (Railway provides $PORT dynamically)
+echo "==> Configuring nginx port..."
+sed -i "s/PORT_PLACEHOLDER/${PORT:-8080}/g" /etc/nginx/sites-available/default
+
 echo "==> Starting services..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
